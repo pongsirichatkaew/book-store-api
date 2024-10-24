@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { BsIamModule } from './bs-iam.module';
+import { BooksIamModule } from './books-iam.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(BsIamModule);
+  const app = await NestFactory.create(BooksIamModule);
   await app.listen(process.env.port ?? 3000);
 }
 bootstrap();

@@ -1,40 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/book-store-api/src",
+  "sourceRoot": "apps/app/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/book-store-api/tsconfig.app.json"
+    "tsConfigPath": "apps/app/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/book-store-api",
+  "root": "apps/app",
   "projects": {
-    "book-store-api": {
+    "app": {
       "type": "application",
-      "root": "apps/book-store-api",
+      "root": "apps/app",
       "entryFile": "main",
-      "sourceRoot": "apps/book-store-api/src",
+      "sourceRoot": "apps/app/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/book-store-api/tsconfig.app.json"
-      }
-    },
-    "bs-iam": {
-      "type": "application",
-      "root": "apps/bs-iam",
-      "entryFile": "main",
-      "sourceRoot": "apps/bs-iam/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/bs-iam/tsconfig.app.json"
-      }
-    },
-    "bs-coffees": {
-      "type": "application",
-      "root": "apps/bs-coffees",
-      "entryFile": "main",
-      "sourceRoot": "apps/bs-coffees/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/bs-coffees/tsconfig.app.json"
+        "tsConfigPath": "apps/app/tsconfig.app.json"
       }
     },
     "books-service": {
@@ -44,6 +26,15 @@
       "sourceRoot": "apps/books-service/src",
       "compilerOptions": {
         "tsConfigPath": "apps/books-service/tsconfig.app.json"
+      }
+    },
+    "books-iam": {
+      "type": "application",
+      "root": "apps/books-iam",
+      "entryFile": "main",
+      "sourceRoot": "apps/books-iam/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/books-iam/tsconfig.app.json"
       }
     }
   }
