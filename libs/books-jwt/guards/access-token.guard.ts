@@ -23,7 +23,6 @@ export class AccessTokenGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
 
-    console.log(' this.jwtConfiguration', this.jwtConfiguration);
     if (!token) {
       throw new UnauthorizedException();
     }

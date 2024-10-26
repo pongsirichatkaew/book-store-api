@@ -8,8 +8,10 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { BookUser } from 'libs/books-jwt/decorators/book-user.decorator';
 
 import { AccessTokenGuard } from 'libs/books-jwt/guards/access-token.guard';
+import { BooksUserData } from 'libs/books-jwt/interfaces/books-user.interfaces';
 import { BooksIamService } from './books-iam.service';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
@@ -29,10 +31,10 @@ export class BooksIamController {
     return this.booksIamService.signIn(signInDto);
   }
 
-  @UseGuards(AccessTokenGuard)
+  // @UseGuards(AccessTokenGuard)
   @Get('test-token')
-  testToken(@Request() request) {
-    console.log('req', request.user);
+  testToken(@BookUser('email') user: BooksUserData) {
+    console.log('email', user);
     return 'Ok';
   }
 }
