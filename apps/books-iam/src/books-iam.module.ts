@@ -6,7 +6,7 @@ import { BooksIamController } from './books-iam.controller';
 import { BooksIamService } from './books-iam.service';
 
 @Module({
-  imports: [ConfigModule.forRoot(), BooksDatabaseModule, BooksJwtModule],
+  imports: [BooksDatabaseModule, BooksJwtModule],
   controllers: [BooksIamController],
   providers: [BooksIamService],
 })

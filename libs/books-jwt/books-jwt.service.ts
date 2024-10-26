@@ -19,7 +19,6 @@ export class BooksJwtService {
       issuer: this.configService.issuer,
     };
 
-    console.log('jwtSignOption', jwtSignOption);
     return this.jwtService.signAsync(
       { sub: userId, ...payload },
       jwtSignOption,

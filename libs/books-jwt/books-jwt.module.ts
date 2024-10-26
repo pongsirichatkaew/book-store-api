@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import booksJwtConfig from './books-jwt.config';
 import { BooksJwtService } from './books-jwt.service';
+import { AccessTokenGuard } from './guards/access-token.guard';
 
 @Module({
   imports: [
@@ -10,7 +11,12 @@ import { BooksJwtService } from './books-jwt.service';
     ConfigModule.forFeature(booksJwtConfig),
     JwtModule,
   ],
-  providers: [BooksJwtService],
-  exports: [BooksJwtService],
+  providers: [BooksJwtService, JwtService, AccessTokenGuard],
+  exports: [
+    BooksJwtService,
+    ConfigModule.forFeature(booksJwtConfig),
+    JwtService,
+    AccessTokenGuard,
+  ],
 })
 export class BooksJwtModule {}
