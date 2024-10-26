@@ -15,6 +15,11 @@ services:
       - BOOK_DB_USER=postgres
       - BOOK_DB_PASSWORD=postgres
       - BOOK_DB_NAME=books
+      - JWT_SECRET=BOOKS_JWT_SECRET
+      - JWT_TOKEN_AUDIENCE=localhost:3000
+      - JWT_TOKEN_ISSUER=localhost:3000
+      - JWT_ACCESS_TOKEN_TTL=3600
+      - JWT_REFRESH_TOKEN_TTL=86400
       - PORT=3000
     deploy:
       replicas: 1 
