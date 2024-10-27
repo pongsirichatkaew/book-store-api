@@ -15,6 +15,7 @@ export class BooksIamService {
     const user = new User();
     user.email = signUpDto.email;
     user.password = await this.hash(signUpDto.password);
+    user.role = signUpDto.role;
     await this.userService.save(user);
   }
 
@@ -34,7 +35,9 @@ export class BooksIamService {
 
     const accessToken = await this.booksJwtService.signToken(user.id, {
       email: user.email,
+      role: user.role,
     });
+
     return { accessToken };
   }
 

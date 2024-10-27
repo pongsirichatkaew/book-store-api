@@ -1,4 +1,4 @@
-import { IsEmail, MinLength, MaxLength } from 'class-validator';
+import { IsEmail, MinLength, MaxLength, IsEnum } from 'class-validator';
 
 export class SignInDto {
   @IsEmail()
