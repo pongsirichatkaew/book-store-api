@@ -68,8 +68,7 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
     container_name: elasticsearch
-    logging:
-      driver: none
+    attach: false
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
@@ -79,8 +78,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.15.0
     container_name: kibana
-    logging:
-      driver: none
+    attach: false
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
