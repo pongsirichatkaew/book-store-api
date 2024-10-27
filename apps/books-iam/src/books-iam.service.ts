@@ -18,13 +18,20 @@ export class BooksIamService {
     user.email = signUpDto.email;
     user.password = await this.hash(signUpDto.password);
     user.role = signUpDto.role;
+
+    this.loggerService.log(`signUp user:${JSON.stringify(user)} `);
     await this.userService.save(user);
   }
 
   async signIn(signInDto: SignInDto) {
     const user = await this.userService.findByEmail(signInDto.email);
-    this.loggerService.log('test2');
+    this.loggerService.log(
+      `signIn user:${JSON.stringify(user)} with email ${signInDto.email}`,
+    );
     if (!user) {
+      this.loggerService.warn(
+        `signIn UnauthorizedException with email ${signInDto.email}`,
+      );
       throw new UnauthorizedException('User does not exists');
     }
 

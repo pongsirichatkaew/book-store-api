@@ -13,6 +13,7 @@ services:
     environment:
       # Here we specify the environment variables that will be passed to the container
       - PORT=3000
+      - APP_NAME=books-iam
     deploy:
       replicas: 1 
     ports:
@@ -41,6 +42,7 @@ services:
        - '.env'
     environment:
       - PORT=3001
+      - APP_NAME=books-service
     deploy:
       replicas: 1 # This instructs Docker Compose to start 3 instances of the "books-service" container
     ports:
@@ -66,6 +68,8 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
     container_name: elasticsearch
+    logging:
+      driver: none
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
@@ -75,6 +79,8 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.15.0
     container_name: kibana
+    logging:
+      driver: none
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
