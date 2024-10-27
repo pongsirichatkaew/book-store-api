@@ -28,6 +28,8 @@ services:
     depends_on:
       - books-db
       - books-service
+      - kibana
+      - elasticsearch
   books-service:
     build:
       context: .
@@ -53,9 +55,29 @@ services:
       - ./apps/books-service:/usr/src/app/apps/books-service
     depends_on:
       - books-db
+      - kibana
+      - elasticsearch
   books-db:
     image: postgres:13.2-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=books
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"  # Elasticsearch HTTP
+      - "9300:9300"  # Elasticsearch TCP transport
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"  # Kibana dashboard
+    depends_on:
+      - elasticsearch

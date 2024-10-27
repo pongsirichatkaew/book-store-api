@@ -5,11 +5,13 @@ import { SignUpDto } from './dto/sign-up.dto';
 import { compare, genSalt, hash } from 'bcrypt';
 import { SignInDto } from './dto/sign-in.dto';
 import { BooksJwtService } from 'libs/books-jwt/books-jwt.service';
+import { BooksLoggingService } from 'libs/books-logging/src/books-logging.service';
 @Injectable()
 export class BooksIamService {
   constructor(
     private readonly userService: UserService,
     private readonly booksJwtService: BooksJwtService,
+    private readonly loggerService: BooksLoggingService,
   ) {}
   async signUp(signUpDto: SignUpDto) {
     const user = new User();
@@ -21,6 +23,7 @@ export class BooksIamService {
 
   async signIn(signInDto: SignInDto) {
     const user = await this.userService.findByEmail(signInDto.email);
+    this.loggerService.log('test2');
     if (!user) {
       throw new UnauthorizedException('User does not exists');
     }
