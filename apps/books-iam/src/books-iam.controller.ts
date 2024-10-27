@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { BookUser } from 'libs/books-jwt/decorators/book-user.decorator';
 
-import { AccessTokenGuard } from 'libs/books-jwt/guards/access-token.guard';
 import { BooksUserData } from 'libs/books-jwt/interfaces/books-user.interfaces';
 import { BooksIamService } from './books-iam.service';
 import { SignInDto } from './dto/sign-in.dto';
