@@ -8,7 +8,6 @@ The project is organized into two main directories:
 - apps: Contains microservices for handling specific business logic.
 - libs: Contains shared libraries for common functionality across services.
 
-- Enhance this starter application so that upon startup it loads the data from [./src/quotes.ts](./src/quotes.ts) into a MongoDB collection named 'prices'.
 
 ## How to start a project:
 
