@@ -6,12 +6,14 @@ import { compare, genSalt, hash } from 'bcrypt';
 import { SignInDto } from './dto/sign-in.dto';
 import { BooksJwtService } from 'libs/books-jwt/books-jwt.service';
 import { BooksLoggingService } from 'libs/books-logging/src/books-logging.service';
+import { BooksNotificationService } from 'apps/books-notification/src/books-notification.service';
 @Injectable()
 export class BooksIamService {
   constructor(
     private readonly userService: UserService,
     private readonly booksJwtService: BooksJwtService,
     private readonly loggerService: BooksLoggingService,
+    private readonly notificationService: BooksNotificationService,
   ) {}
   async signUp(signUpDto: SignUpDto) {
     const user = new User();
@@ -21,6 +23,7 @@ export class BooksIamService {
 
     this.loggerService.log(`signUp user:${JSON.stringify(user)} `);
     await this.userService.save(user);
+    this.notificationService.sendUserRegistrationNotification(user.email);
   }
 
   async signIn(signInDto: SignInDto) {

@@ -8,4 +8,9 @@ export class BooksServiceService {
     this.loggerService.log('getHello');
     return 'Hello World! BooksServiceService';
   }
+
+  createBook() {
+    this.loggerService.log('createBook Called');
+    return 'Book created';
+  }
 }

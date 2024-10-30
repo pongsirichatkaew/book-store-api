@@ -36,6 +36,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/books-iam/tsconfig.app.json"
       }
+    },
+    "books-notification": {
+      "type": "application",
+      "root": "apps/books-notification",
+      "entryFile": "main",
+      "sourceRoot": "apps/books-notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/books-notification/tsconfig.app.json"
+      }
     }
   }
 }

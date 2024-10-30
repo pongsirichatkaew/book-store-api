@@ -12,10 +12,10 @@ export class BooksServiceController {
   getHello(): string {
     return this.booksServiceService.getHello();
   }
-  
+
   @Roles(Role.Admin)
   @Post()
   postBook() {
-    return this.booksServiceService.getHello();
+    return this.booksServiceService.createBook();
   }
 }
