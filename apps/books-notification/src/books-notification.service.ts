@@ -29,14 +29,22 @@ export class BooksNotificationService {
     });
   }
 
-  sendEmailNotification(data: any) {
+  handleUserRegistration(data: any) {
+    this.loggerService.log('emit message to SEND_EMAIL');
     return this.clientKafka.emit(BooksNotificationTopics.SEND_EMAIL, {
       key: 'email_sent',
       value: JSON.stringify(data),
     });
   }
 
+  handleBookCreated(data: any) {
+    return this.clientKafka.emit(BooksNotificationTopics.BOOK_CREATED, {
+      key: 'book_created',
+      value: JSON.stringify(data),
+    });
+  }
+
   sendEmail() {
-    this.loggerService.debug('email sent');
+    this.loggerService.log('email sent');
   }
 }

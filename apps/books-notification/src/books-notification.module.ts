@@ -14,6 +14,7 @@ import { BooksNotificationConfig } from './configs/books-notification.configs';
         transport: Transport.KAFKA,
         options: {
           client: {
+            clientId: process.env.KAFKA_GROUP_ID,
             brokers: ['kafka:9092'],
           },
           consumer: {
